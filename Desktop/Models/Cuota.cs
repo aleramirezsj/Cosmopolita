@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Desktop.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,7 @@ namespace Modelos
         [Key]
         public int Id { get; set; }
         [Required]
-        public int Mes { get; set; }
+        public MesEnum Mes { get; set; }
         [Required]
         public int Año { get; set; }
         [Required]

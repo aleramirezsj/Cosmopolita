@@ -10,11 +10,13 @@
 
   <ItemGroup>
     <None Remove="Reportes\RptListadoActividades.rdlc" />
+    <None Remove="Reportes\RptListadoCuotas.rdlc" />
     <None Remove="Reportes\RptListadoSocios.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Reportes\RptListadoActividades.rdlc" />
+    <EmbeddedResource Include="Reportes\RptListadoCuotas.rdlc" />
     <EmbeddedResource Include="Reportes\RptListadoSocios.rdlc" />
   </ItemGroup>
 
@@ -39,6 +41,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Data\CosmopolitaDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CosmopolitaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -48,6 +55,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ListadoCuotasView.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 
@@ -59,6 +69,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\CosmopolitaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CosmopolitaDataSet.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

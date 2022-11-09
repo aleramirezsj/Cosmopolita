@@ -3,6 +3,7 @@ using Desktop.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Modelos;
+using Presentación;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,37 @@ namespace Desktop.Views
 {
     public partial class GeneradorDeCuotasView : Form
     {
+        IEnumerable<object> _cuotas;
         CosmopolitaContext _context= new CosmopolitaContext();
         public GeneradorDeCuotasView()
         {
             InitializeComponent();
-            CargarCboActividad();           
+            CargarDatosPantalla();
+        }
+
+        private async Task CargarDatosPantalla()
+        {
             CargarcboMes();
             CargarcboAño();
+            await CargarCboActividad();
+            await CargarGrillaCuotas();
+
+        }
+
+        private async Task CargarGrillaCuotas()
+        {
+            var cuotas = await _context.Cuotas.Where(c => c.ActividadId == (int)cboActividad.SelectedValue && c.Año==(int)cboAño.SelectedItem && c.Mes==(MesEnum)cboMes.SelectedIndex+1).Include(c=>c.Socio).DefaultIfEmpty().Include(c=>c.Cobrador).Include(c=>c.Actividad).ToListAsync();
+            _cuotas = from cuota in cuotas select new { 
+                Id = cuota.Id,
+                Socio = cuota.Socio.Apellido_Nombre,
+                Actividad = cuota.Actividad.Nombre,
+                Mes = cuota.Mes,
+                Año = cuota.Año,
+                Importe = cuota.Monto,
+                Vencimiento = cuota.Vencimiento
+                };
+            gridCuotas.DataSource = _cuotas.ToList();
+            //gridCuotas.Columns["Id"].Visible = false; //Ocultar Id
         }
 
         private void CargarcboAño()
@@ -52,30 +77,39 @@ namespace Desktop.Views
 
         }
 
-        private void cboActividad_SelectionChangeCommitted(object sender, EventArgs e)
+        private async void cboActividad_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var actividad = _context.Actividades.Find((int)cboActividad.SelectedValue);
             nudImporte.Value=actividad.Costo;
+            await CargarGrillaCuotas();
         }
 
-        private void btnGenerar_Click(object sender, EventArgs e)
+        private async void btnGenerar_Click(object sender, EventArgs e)
         {
             //traemos todos los socios de la actividad seleccionada
             var socios = _context.Inscriptos.Where(i => i.ActividadId == (int)cboActividad.SelectedValue);
             //generamos las cuotas de los socios
             foreach (Inscripto inscripto in socios)
             {
-                var cuota= new Cuota()
+                var cuota = new Cuota()
                 {
-                    ActividadId=(int)cboActividad.SelectedValue,
-                    SocioId=inscripto.SocioId,
-                    Año=(int)cboAño.SelectedItem,
-                    Mes =cboMes.SelectedIndex+1,
-                    Monto=nudImporte.Value                
+                    ActividadId = (int)cboActividad.SelectedValue,
+                    SocioId = inscripto.SocioId,
+                    Año = (int)cboAño.SelectedItem,
+                    Mes = (MesEnum)cboMes.SelectedIndex + 1,
+                    Monto = nudImporte.Value,
+                    Vencimiento = dateTimePicker1.Value.Date
                 };
                 _context.Cuotas.Add(cuota);
             }
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            await CargarGrillaCuotas();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            var listadoCuotasView = new ListadoCuotasView(_cuotas);
+            listadoCuotasView.ShowDialog();
         }
     }
 }

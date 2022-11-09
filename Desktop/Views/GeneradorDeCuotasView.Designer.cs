@@ -98,6 +98,7 @@
             // 
             // gridCuotas
             // 
+            this.gridCuotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridCuotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCuotas.Location = new System.Drawing.Point(21, 145);
             this.gridCuotas.Name = "gridCuotas";
@@ -114,6 +115,7 @@
             this.btnImprimir.TabIndex = 10;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // Importe
             // 
