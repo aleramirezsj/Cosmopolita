@@ -1,6 +1,6 @@
 ﻿namespace Desktop.Views
 {
-    partial class CobaranzaView
+    partial class CobranzaView
     {
         /// <summary>
         /// Required designer variable.
@@ -55,6 +55,7 @@
             // 
             // cboCobrador
             // 
+            this.cboCobrador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCobrador.FormattingEnabled = true;
             this.cboCobrador.Location = new System.Drawing.Point(696, 35);
             this.cboCobrador.Name = "cboCobrador";
@@ -140,7 +141,7 @@
             this.btnAnularPago.Text = "Anular Pago";
             this.btnAnularPago.UseVisualStyleBackColor = true;
             // 
-            // CobaranzaView
+            // CobranzaView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +157,7 @@
             this.Controls.Add(this.txtBuscarSocio);
             this.Controls.Add(this.cboCobrador);
             this.Controls.Add(this.lblSocio);
-            this.Name = "CobaranzaView";
+            this.Name = "CobranzaView";
             this.Text = "CobaranzaView";
             ((System.ComponentModel.ISupportInitialize)(this.gridSocios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCuotasAdeudadas)).EndInit();

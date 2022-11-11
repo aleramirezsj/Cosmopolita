@@ -215,5 +215,11 @@ namespace Presentación
             var generadorDeCuotasView=new GeneradorDeCuotasView();
             generadorDeCuotasView.ShowDialog();
         }
+
+        private void cuotasDeDisciplinasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cobranzaView = new CobranzaView();
+            cobranzaView.ShowDialog();
+        }
     }
 }

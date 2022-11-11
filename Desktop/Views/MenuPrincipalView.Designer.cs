@@ -232,13 +232,13 @@ namespace Presentación
             // societariasToolStripMenuItem
             // 
             this.societariasToolStripMenuItem.Name = "societariasToolStripMenuItem";
-            this.societariasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.societariasToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.societariasToolStripMenuItem.Text = "Societarias";
             // 
             // disciplinasToolStripMenuItem1
             // 
             this.disciplinasToolStripMenuItem1.Name = "disciplinasToolStripMenuItem1";
-            this.disciplinasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.disciplinasToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.disciplinasToolStripMenuItem1.Text = "Actividades";
             this.disciplinasToolStripMenuItem1.Click += new System.EventHandler(this.disciplinasToolStripMenuItem1_Click);
             // 
@@ -267,6 +267,7 @@ namespace Presentación
             this.cuotasDeDisciplinasToolStripMenuItem.Name = "cuotasDeDisciplinasToolStripMenuItem";
             this.cuotasDeDisciplinasToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.cuotasDeDisciplinasToolStripMenuItem.Text = "Cuotas de Disciplinas";
+            this.cuotasDeDisciplinasToolStripMenuItem.Click += new System.EventHandler(this.cuotasDeDisciplinasToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
