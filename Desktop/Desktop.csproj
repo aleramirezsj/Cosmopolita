@@ -56,7 +56,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="Views\ListadoCuotasView.cs">
+    <Compile Update="ViewReports\CuotasViewReport.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

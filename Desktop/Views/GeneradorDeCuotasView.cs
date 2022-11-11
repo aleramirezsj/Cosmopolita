@@ -108,7 +108,7 @@ namespace Desktop.Views
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            var listadoCuotasView = new ListadoCuotasView(_cuotas);
+            var listadoCuotasView = new CuotasViewReport(_cuotas);
             listadoCuotasView.ShowDialog();
         }
     }

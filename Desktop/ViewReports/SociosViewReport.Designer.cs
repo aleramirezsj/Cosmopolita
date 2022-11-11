@@ -1,6 +1,6 @@
 ﻿namespace Presentación
 {
-    partial class ListadoCuotasView
+    partial class SociosViewReport
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // FrmReporteActividades
+            // FrmReporteSocios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "FrmReporteActividades";
-            this.Text = "FrmReporteActividades";
+            this.Name = "FrmReporteSocios";
+            this.Text = "FrmReporteSocios";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmReporteActividades_Load);
+            this.Load += new System.EventHandler(this.FrmReporteSocios_Load);
             this.ResumeLayout(false);
 
         }

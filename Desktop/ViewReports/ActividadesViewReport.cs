@@ -1,6 +1,5 @@
 ﻿using Data;
 using Microsoft.Reporting.WinForms;
-using Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Presentación
 {
-    public partial class ListadoCuotasView : Form
+    public partial class ActividadesViewReport : Form
     {
-        IEnumerable<object> _cuotas;
+        CosmopolitaContext db = new CosmopolitaContext();
         ReportViewer reporte = new ReportViewer();
-        public ListadoCuotasView(IEnumerable<object> cuotas)
+        public ActividadesViewReport()
         {
             InitializeComponent();
             reporte.Dock= DockStyle.Fill;
@@ -25,13 +24,13 @@ namespace Presentación
             reporte.ZoomMode=ZoomMode.Percent;
             reporte.ZoomPercent = 100;
             Controls.Add(reporte);
-            this._cuotas = cuotas;
         }
 
         private void FrmReporteActividades_Load(object sender, EventArgs e)
         {
-            reporte.LocalReport.ReportEmbeddedResource = "Desktop.Reportes.RptListadoCuotas.rdlc";
-            reporte.LocalReport.DataSources.Add(new ReportDataSource("DSCuotas", this._cuotas));
+            reporte.LocalReport.ReportEmbeddedResource = "Desktop.Reportes.RptListadoActividades.rdlc";
+            var actividades = db.Actividades.ToList();
+            reporte.LocalReport.DataSources.Add(new ReportDataSource("DSActividades", actividades));
             reporte.RefreshReport();
         }
     }

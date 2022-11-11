@@ -1,6 +1,6 @@
 ﻿namespace Presentación
 {
-    partial class ListadoActividadesView
+    partial class ActividadesViewReport
     {
         /// <summary>
         /// Required designer variable.

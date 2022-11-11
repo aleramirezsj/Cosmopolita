@@ -166,13 +166,13 @@ namespace Presentación
 
         private void impresiónListaDeSociosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmReporteSocios=new ListadoSociosView();
+            var frmReporteSocios=new SociosViewReport();
             frmReporteSocios.ShowDialog();  
         }
 
         private void impresiónListadoDeActividadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmReporteActidades = new ListadoActividadesView();
+            var frmReporteActidades = new ActividadesViewReport();
             frmReporteActidades.ShowDialog();
         }
 

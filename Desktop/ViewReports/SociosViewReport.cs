@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Presentación
 {
-    public partial class ListadoSociosView : Form
+    public partial class SociosViewReport : Form
     {
         ReportViewer reporte = new ReportViewer();
         CosmopolitaContext db = new CosmopolitaContext();
-        public ListadoSociosView()
+        public SociosViewReport()
         {
             InitializeComponent();
             reporte.Dock = DockStyle.Fill;
