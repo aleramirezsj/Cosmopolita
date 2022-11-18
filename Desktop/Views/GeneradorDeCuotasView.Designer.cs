@@ -165,6 +165,7 @@
             this.cboAño.Name = "cboAño";
             this.cboAño.Size = new System.Drawing.Size(121, 23);
             this.cboAño.TabIndex = 16;
+            this.cboAño.SelectionChangeCommitted += new System.EventHandler(this.cboAño_SelectionChangeCommitted);
             // 
             // cboMes
             // 
@@ -174,6 +175,7 @@
             this.cboMes.Name = "cboMes";
             this.cboMes.Size = new System.Drawing.Size(121, 23);
             this.cboMes.TabIndex = 17;
+            this.cboMes.SelectionChangeCommitted += new System.EventHandler(this.cboMes_SelectionChangeCommitted);
             // 
             // mySqlCommand1
             // 

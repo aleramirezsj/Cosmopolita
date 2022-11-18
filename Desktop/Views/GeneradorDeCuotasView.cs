@@ -30,24 +30,35 @@ namespace Desktop.Views
         {
             CargarcboMes();
             CargarcboAño();
-            await CargarCboActividad();
-            await CargarGrillaCuotas();
+            var cargarCboActividadTask= CargarCboActividad();
+            var cargarGrillaCuotasTask= CargarGrillaCuotas();
+            await Task.WhenAll(cargarCboActividadTask, cargarGrillaCuotasTask);
 
         }
 
         private async Task CargarGrillaCuotas()
         {
             var cuotas = await _context.Cuotas.Where(c => c.ActividadId == (int)cboActividad.SelectedValue && c.Año==(int)cboAño.SelectedItem && c.Mes==(MesEnum)cboMes.SelectedIndex+1).Include(c=>c.Socio).DefaultIfEmpty().Include(c=>c.Cobrador).Include(c=>c.Actividad).ToListAsync();
-            _cuotas = from cuota in cuotas select new { 
-                Id = cuota.Id,
-                Socio = cuota.Socio.Apellido_Nombre,
-                Actividad = cuota.Actividad.Nombre,
-                Mes = cuota.Mes,
-                Año = cuota.Año,
-                Importe = cuota.Monto,
-                Vencimiento = cuota.Vencimiento
-                };
-            gridCuotas.DataSource = _cuotas.ToList();
+            if (cuotas[0] != null)
+            {
+                _cuotas = from cuota in cuotas
+                          select new
+                          {
+                              Id = cuota.Id,
+                              Socio = cuota.Socio.Apellido_Nombre,
+                              Actividad = cuota.Actividad.Nombre,
+                              Mes = cuota.Mes,
+                              Año = cuota.Año,
+                              Importe = cuota.Monto,
+                              Vencimiento = cuota.Vencimiento
+                          };
+                gridCuotas.DataSource = _cuotas.ToList();
+            }
+            else
+            {
+                gridCuotas.DataSource = null;
+            }
+                
             //gridCuotas.Columns["Id"].Visible = false; //Ocultar Id
         }
 
@@ -110,6 +121,16 @@ namespace Desktop.Views
         {
             var listadoCuotasView = new CuotasViewReport(_cuotas);
             listadoCuotasView.ShowDialog();
+        }
+
+        private async void cboAño_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            await CargarGrillaCuotas();
+        }
+
+        private async void cboMes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            await CargarGrillaCuotas();
         }
     }
 }
