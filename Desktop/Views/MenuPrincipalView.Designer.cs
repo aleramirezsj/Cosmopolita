@@ -562,7 +562,7 @@ namespace Presentación
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MenuPrincipalView";
-            this.Text = "Sistema Club Social Cosmopolita";
+            this.Text = "*";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmMenuPrincipal_Activated);
             this.Load += new System.EventHandler(this.FrmMenuPrincipal_Load);
